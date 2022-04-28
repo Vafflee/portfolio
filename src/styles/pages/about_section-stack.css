@@ -1,0 +1,68 @@
+.section-stack {
+    position: relative;
+    padding: 50px 0;
+    z-index: 0;
+    background: center / cover no-repeat url('../../images/bg/stack-bg.webp');
+    @media (min-width: 768px) {
+        padding: 80px 0;
+    }
+    * {
+        color: var(--light);
+    }
+    & .row {
+        justify-content: center;
+        flex-direction: row;
+        @media (min-width: 1200px) {
+            flex-direction: row-reverse;
+        }
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.5);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    &__logos {
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @media (min-width: 1200px) {
+            justify-content: flex-start;
+        }
+    }
+    &__logo {
+        margin-right: 20px;
+        margin-top: 1rem;
+        @media (min-width: 768px) {
+            margin-top: 0;
+            margin-right: 50px;
+        }
+        picture {
+            transform: scale(0.7);
+            @media (min-width: 768px) {
+                transform: scale(1);
+            }
+        }
+    }
+    &__text {
+        z-index: 2;
+        margin-bottom: 0;
+        @media (min-width: 768px) {
+            margin-bottom: 30px;
+        }
+        max-width: 600px;
+        @media (min-width: 1200px) {
+            max-width: auto;
+            margin-bottom: 0;
+            text-align: right;
+        }
+    }
+    &__title {
+        margin-bottom: 15px;
+    }
+}

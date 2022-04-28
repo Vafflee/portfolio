@@ -1,0 +1,89 @@
+.section-about {
+    padding: 2rem 0;
+    background: #DCD7E3;
+    box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    &__text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 30px;
+        @media (min-width: 768px) {
+            margin-bottom: 0;
+        }
+    }
+    &__title {
+        margin-bottom: 15px;
+    }
+    &__apps {
+        position: relative;
+        height: 190px;
+        &-sm {
+            height: 190px;
+            display: flex;
+            justify-content: stretch;
+            padding: 0;
+            @media (min-width: 768px) {
+                display: none;
+            }
+        }
+        display: none;
+        @media (min-width: 768px) {
+            display: block;
+            height: 230px;
+        }
+        @media (min-width: 992px) {
+            height: 280px;
+        }
+        @media (min-width: 1200px) {
+            height: 320px;
+        }
+        .section-about__app, &-sm .section-about__app {
+            flex: 1 0 auto;
+            img {
+                width: 280px;
+                height: 190px;
+                @media (min-width: 768px) {
+                    position: absolute;
+                    width: 320px;
+                    height: 230px;
+                }
+                @media (min-width: 992px) {
+                    width: 430px;
+                    height: 280px;
+                }
+                @media (min-width: 1200px) {
+                    width: 480px;
+                    height: 320px;
+                }
+                object-fit: cover;
+                box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+            }
+        }
+        .section-about__app:nth-child(3) {
+            img {
+                @media (min-width: 768px) {
+                    left: 20%;
+                    transform: scale(1);
+                }
+            }
+        }
+        .section-about__app:nth-child(2) {
+            img {
+                @media (min-width: 768px) {
+                    left: 35%;
+                    transform: scale(0.7);
+                }
+            }
+        }
+        .section-about__app:nth-child(1) {
+            img {
+                @media (min-width: 768px) {   
+                    left: 45%;
+                    transform: scale(0.5);
+                }
+            }
+        }
+    }
+}

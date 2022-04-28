@@ -1,0 +1,103 @@
+.header {
+    position: fixed;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+    &._scroll-block {
+        transform: translateX(-7.5px);
+    }
+    &._scroll-block._touch {
+        transform: translateX(0px);
+    }
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    @media (min-width: 992px) {
+        justify-content: flex-start;
+    }
+    background: rgba(0, 0, 0, 0.4);
+    * {
+        color: #fff;
+    }
+    &__textme {
+        margin-left: auto;
+        align-self: center;
+        display: none;
+        @media (min-width: 992px) {
+            display: block;
+        }
+    }
+    &__link {
+        text-align: center;
+        &._active {
+            text-decoration: underline;
+        }
+
+        padding: 17px 15px;
+        @media (min-width: 576px) {
+            padding: 17px 30px;
+        }
+
+        flex-grow: 1;
+        @media (min-width: 576px) {
+            flex-grow: 0;
+        }
+
+        text-decoration: none;
+        transition: 0.2s;
+        cursor: pointer;
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        &:visited {
+            text-decoration: none;
+        }
+    }
+}
+.modal-message__title {
+    z-index: 21;
+    color: var(--light);
+    margin-bottom: 10px;
+}
+.modal-message__container {
+    display: flex;
+    flex-direction: column;
+}
+.modal-message__form {
+    
+    width: 100%;
+    max-width: 500px;
+    z-index: 21;
+    max-height: 80vh;
+    transition: 0.2s;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    & > * {
+        display: flex;
+    }
+    * {
+        max-height: inherit;
+    }
+    background: var(--light);
+}
+button {
+    grid-column: 1 / 3;
+    border: 2px solid var(--dark);
+    border-radius: 20px;
+    background: transparent;
+    justify-self: stretch;
+    justify-content: center;
+    padding: 5px;
+}
+input, textarea {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+textarea {
+    resize: none;
+}

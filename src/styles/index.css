@@ -1,0 +1,50 @@
+@import url("./modules/base.css");
+@import url("./modules/bootstrap-grid.css");
+@import url("./modules/text.css");
+@import url("./bem/button.css");
+@import url("./bem/footer.css");
+@import url("./bem/header.css");
+@import url("./bem/icon.css");
+@import url("./bem/modal.css");
+@import url("./bem/loader.css");
+@import url("./pages/about_section-about.css");
+@import url("./pages/about_section-gallery.css");
+@import url("./pages/about_section-hello.css");
+@import url("./pages/about_section-stack.css");
+@import url("./pages/contacts_section-contacts.css");
+@import url("./pages/projects_section-apps.css");
+@import url("./pages/projects_section-gallery.css");
+@import url("./pages/skills_section-markup.css");
+@import url('fonts.css');
+
+:root {
+    --dark: #1c1c1d;
+    --light: #fff;
+}
+body {
+    background: var(--dark);
+    font-family: SF-Pro;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    @media (min-width: 992px) {
+        font-size: 18px;
+    }
+    &._scroll-block {
+        overflow-y: hidden;
+        padding-right: 15px;
+    }
+    &._scroll-block._touch {
+        padding-right: 0;
+    }
+}
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a, a:visited {
+    text-decoration: none;
+}

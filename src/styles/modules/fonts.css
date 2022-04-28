@@ -1,0 +1,12 @@
+@font-face {
+    font-family: SF-Pro;
+    src: url('../fonts/SF-Pro-Display-Regular.otf') format('otf'),
+         url('../fonts/SF-Pro-Display-Regular.woff2') format('woff2');
+    font-weight: 400;
+}
+@font-face {
+    font-family: SF-Pro;
+    src: url('../fonts/SF-Pro-Display-Bold.otf') format('otf'),
+         url('../fonts/SF-Pro-Display-Bold.woff2') format('woff2');
+    font-weight: 700;
+}

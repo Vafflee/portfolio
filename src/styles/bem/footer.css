@@ -1,0 +1,52 @@
+.footer {
+    background: var(--dark);
+    color: var(--light);
+    & > .container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 15px 15px;
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+    }
+    &__contacts {
+        display: flex;
+        flex-direction: column;
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+        a, a:visited {
+            text-decoration: none;
+        }
+    }
+    &__contact {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        @media (min-width: 768px) {
+            margin-left: 10px;
+        }
+    }
+    &__text {
+        align-self: center;
+        margin-right: 0;
+        margin-top: 1em;
+        @media (min-width: 768px) {
+            margin-right: auto;
+            margin-top: 0;
+        }
+        max-width: 60%;
+    }
+    &__icon {
+        max-height: inherit;
+        
+        padding: 0 7px;
+    }
+    a, a:visited {
+        color: var(--light);
+    }
+    a:hover {
+        text-decoration-line: underline;
+    }
+}
