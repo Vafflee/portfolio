@@ -1,64 +1,58 @@
 import React, { useEffect, useState } from 'react'
 import { listAll, ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase/firebase';
-import { ModalPicture } from './ModalPicture';
-import { LazyLoadImage, LazyLoadComponent, trackWindowScroll, ScrollPosition } from 'react-lazy-load-image-component';
+import { LazyLoadComponent, trackWindowScroll, ScrollPosition } from 'react-lazy-load-image-component';
+import { Link, Outlet } from 'react-router-dom';
+
 
 type GallryProps = {
     scrollPosition: ScrollPosition
 }
 
+type ImageObject = {
+    name: string,
+    url: string
+}
+
 const ProjectsGallery:React.FC<GallryProps> = ({ scrollPosition }) => {
 
-    const [imageURLs, setImageURLs] = useState<string[]>([])
-    const [modalPictureActive, setModalPictureActive] = useState(false)
-    const [activeURL, setActiveURL] = useState('')
-
-    function toggleModal(url: string) {
-        setModalPictureActive(oldState => {
-          return !oldState
-        });
-        setActiveURL(oldURL => {
-          return url
-        });
-    }
-
-    function cardClickHandler(url: string) {
-        toggleModal(url)
-    }
+    const [images, setImages] = useState<ImageObject[]>([])
 
     useEffect(() => {
         listAll(ref(storage, 'design-compressed'))
             .then(images => {
                 // get array of urls for images
-                const imagePromises: Promise<string>[] = [];
+                const imagePromises: Promise<ImageObject>[] = [];
                 images.items.forEach((image) => {
-                    imagePromises.push(getDownloadURL(image))
+                    imagePromises.push(new Promise((res, rej) => {
+                        getDownloadURL(image).then((url) => {
+                            res({name: image.name, url: url})
+                        }).catch((err) => rej(err))
+                    }))
                 });
                 Promise.all(imagePromises)
-                    .then(urls => setImageURLs(urls))
+                    .then(imgs => setImages(imgs))
                     .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
     }, [])
 
-    const images = imageURLs.map(url =>
-        <LazyLoadComponent  key={url} scrollPosition={scrollPosition}>
-            <div className="section-gallery__card" onClick={() => cardClickHandler(url)}>
-                <img src={url} alt="gallery card" />
-                {/* <LazyLoadImage scrollPosition={scrollPosition} src={url} alt={url} /> */}
-            </div>
+    const imagesNodes = images.map((image:ImageObject) =>
+        <LazyLoadComponent  key={image.name} scrollPosition={scrollPosition}>
+            <Link to={`/projects/${image.name.split('.')[0]}`} className="section-gallery__card">
+                <img src={image.url} alt={image.name} />
+            </Link>
         </LazyLoadComponent>
     )
 
     return (
         <>
-            <ModalPicture isActive={modalPictureActive} toggleModal={(url:string ) => toggleModal(url)} url={activeURL} />
+            <Outlet />
             <div className="section-gallery">
                 <div className="container">
                     <h2 className="section-gallery__title h2">Graphic design</h2>
                     <div className="section-gallery__content">
-                    {images.length ? images : 
+                    {imagesNodes.length ? imagesNodes : 
                         <div className='gallery-loader'>
                             <div className="loadingio-spinner-rolling-upw2qshvvl8">
                             <div className="ldio-y9c9revy52">

@@ -7,9 +7,7 @@ import CustomEase from 'gsap/CustomEase'
 gsap.registerPlugin(CustomEase);
 const myEase = CustomEase.create("custom", "M0,0,C0.118,0.65,0.492,1,1,1");
 
-function is_touch_device() {
-    return !!('ontouchstart' in window);
-}
+import is_touch_device from './is_touch_device'
 
 type AboutAboutProps = {
     mousePos: number[]

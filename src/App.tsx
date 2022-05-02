@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route
 } from "react-router-dom"
@@ -8,6 +8,7 @@ import { Header } from "./components/Header"
 import { Footer } from "./components/Footer";
 import { ModalMessage } from "./components/ModalMessage";
 import Loader from "./components/Loader";
+import { ModalPicture } from "./components/ModalPicture";
 
 const About = React.lazy(() => import("./components/About"));
 const Projects = React.lazy(() => import("./components/Projects"));
@@ -45,7 +46,6 @@ function App() {
 
   function toggleModal() {
     setModalMessageActive(oldState => {
-      // document.querySelector('.modal-message')?.classList.toggle('_active');
       return !oldState
     });
     
@@ -62,7 +62,11 @@ function App() {
           <Route path="/" 
             element={ <React.Suspense fallback={<Loader/>}><About toggleModal={() => toggleModal()}/></React.Suspense> } />
           <Route path="/projects" 
-            element={ <React.Suspense fallback={<Loader/>}><Projects/></React.Suspense> } />
+            element={ <React.Suspense fallback={<Loader/>}><Projects/></React.Suspense> }>
+              <Route path={`:imageName`} element={
+                  <ModalPicture isActive={true}/>
+              }/>
+          </Route>
           <Route path="/skills" 
             element={ <React.Suspense fallback={<Loader/>}><Skills/></React.Suspense> } />
           <Route path="/contacts" 
